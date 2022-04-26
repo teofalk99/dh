@@ -5,11 +5,27 @@
 
   <head>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
     <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
     body {
   font-family: 'Merriweather', sans-serif !important;
-        }     
+        }   
+
+    .icon {
+      height: 10%;
+      width: 10%;
+      margin-top: 2%;
+      margin-bottom: 2px;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
     </style>
 
 
@@ -22,24 +38,72 @@
 
     <title>Sizing up Dura-Europos</title>
   </head>
+
+
   <body style="background: #d3d2c3 !important">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Sizing up Dura-Europos</a>
+      
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li>put some stuff here</li>
+        </ul>
+          
+      </div>
+    </nav>
+
+
     <div class=" text-center">
-    <h1  style="margin-top: 20px;">Sizing up Dura-Europos</h1>
 
     <img src="placeholder.png" style="margin-top: 20px;">
-
     </div>
 
-    <div class="container" style="margin-top: 75px;">
-        <h4>About this project:</h4>
-        <p style="float: left; margin-left: 10%">blablabla</p>
-        <p style="float: right; margin-right: 10%">blobloblo</p>
-        
+      <div class="container">
+        <div class="text-center">
+          <!-- hardcoded the function calls :-( i tried to use jQuery but wouldnt work for some reason -->
+        <img id="obj1" onclick="showInfo(1)" class="icon" src='one.png'>
+        <img id="obj2" onclick="showInfo(2)" class="icon" src='two.png'>
+        <img id="obj3" onclick="showInfo(3)" class="icon" src='three.png'>
+        <img id="obj4" onclick="showInfo(4)" class="icon" src='four.png'>
+        <img id="obj5" onclick="showInfo(5)" class="icon" src='five.png'>
+
+      </div>
+      </div>
+
     </div>
+      </div>
+
+    <script>
+
+      var highlighted = null;
+      
+      let showInfo = function (obj) {
+        if (highlighted != null)
+        {
+          document.getElementById("obj" + highlighted).style = ""
+        }
+
+        highlighted = obj
+
+        document.getElementById("obj" + obj).style = "border: 5px solid grey"
+
+        //put information about object in the html elements,
+
+        //put the link to the YUAG site?
+
+
+
+      }
+
+
+
+
+
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>
