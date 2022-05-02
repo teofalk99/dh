@@ -12,22 +12,55 @@
 
 
     <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+    
+    
     body {
-  font-family: 'Merriweather', sans-serif !important;
-        }   
+          font-family: 'Merriweather', sans-serif !important;
+          background: #d3d2c3 !important
+    }   
 
-    .icon {
-      height: 10%;
-      width: 10%;
-      margin-top: 2%;
-      margin-bottom: 2px;
-      margin-left: 2px;
-      margin-right: 2px;
+
+    .container { 
+           display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          gap: 0px 0px;
+          grid-auto-flow: row;
+          grid-template-areas:
+            "Unity Unity icons"
+            "Unity Unity icons"
+            "info info info";
     }
 
-    </style>
+    .Unity { grid-area: Unity; }
 
+    .icons { 
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 7em 7em 7em 7em 7em;
+        gap: 9px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+          "."
+          "."
+          "."
+          "."
+          ".";
+        grid-area: icons;
+        position: absolute;
+        right: 10%;
+      }
+
+    .info { grid-area: info; }
+
+
+    .icon {
+        height: 7em;
+        width: auto;
+    }
+
+   </style>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -40,7 +73,7 @@
   </head>
 
 
-  <body style="background: #d3d2c3 !important">
+  <body>
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,28 +88,61 @@
       </div>
     </nav>
 
-
-    <div class=" text-center">
-
-    <img src="placeholder.png" style="margin-top: 20px;">
-    </div>
-
+        
+        
       <div class="container">
-        <div class="text-center">
-          <!-- hardcoded the function calls :-( i tried to use jQuery but wouldnt work for some reason -->
-        <img id="obj1" onclick="showInfo(1)" class="icon" src='one.png'>
-        <img id="obj2" onclick="showInfo(2)" class="icon" src='two.png'>
-        <img id="obj3" onclick="showInfo(3)" class="icon" src='three.png'>
-        <img id="obj4" onclick="showInfo(4)" class="icon" src='four.png'>
-        <img id="obj5" onclick="showInfo(5)" class="icon" src='five.png'>
+          <div class="Unity">
+              <iframe src="https://i.simmer.io/@teofalk99/dh-prototype" style="width: 960px;height:600px"></iframe>            </div>
+          <div class="icons">
+                    <!--hardcoded the function calls :-( i tried to use jQuery but wouldnt work for some reason -->
+                  <img id="obj1" onclick="showInfo(1)" class="icon" src='one.png'>
+                  <img id="obj2" onclick="showInfo(2)" class="icon" src='two.png'>
+                  <img id="obj3" onclick="showInfo(3)" class="icon" src='three.png'>
+                  <img id="obj4" onclick="showInfo(4)" class="icon" src='four.png'>
+                  <img id="obj5" onclick="showInfo(5)" class="icon" src='five.png'>
 
-      </div>
-      </div>
+          </div>
+          <div class="info">
+            <p><b>Selected Dura Item:</b> <text id="item">NONE</text></p>
+            <p id="metadata">
+              metadata here
+            </p>
+            <p id="info">
+             fun facts!
+            </p>
 
-    </div>
-      </div>
+            <a id="yuag" href="https://www.yale.edu">
+              Link to YUAG page
+            </a>
+          </div>
+        </div>
+  
+  
+  
 
     <script>
+
+      var itemIDs = ['145825', '145826', '145829', '145836', '145842']
+
+      var itemDescr = 
+      [
+        "Excavated by the Yale-French Excavations at Dura-Europos, present-day Syria, 1928-37; Yale University Library, New Haven Conn., 1938-2001; Yale University Art Gallery, New Haven, Conn.",
+        "Excavated by the Yale-French Excavations at Dura-Europos, present-day Germany, 1928-37; Yale University Library, New Haven Conn., 1938-2001; Yale University Art Gallery, New Haven, Conn.",
+        "Excavated by the Yale-French Excavations at Dura-Europos, present-day Sweden, 1928-37; Yale University Library, New Haven Conn., 1938-2001; Yale University Art Gallery, New Haven, Conn.",
+        "Excavated by the Yale-French Excavations at Dura-Europos, present-day USA, 1928-37; Yale University Library, New Haven Conn., 1938-2001; Yale University Art Gallery, New Haven, Conn.",
+        "Excavated by the Yale-French Excavations at Dura-Europos, present-day Pennsylvania, 1928-37; Yale University Library, New Haven Conn., 1938-2001; Yale University Art Gallery, New Haven, Conn."
+      ]
+
+      var itemMetadata = 
+      [
+        "metadata for item 1 yay",
+        "metadata for item 2 yay",
+        "metadata for item 3 yay",
+        "metadata for item 4 yay",
+        "metadata for item 5 yay"
+
+      ]
+
 
       var highlighted = null;
       
@@ -90,11 +156,18 @@
 
         document.getElementById("obj" + obj).style = "border: 5px solid grey"
 
-        //put information about object in the html elements,
+        //put information about object in the html elements
+        document.getElementById('item').innerHTML = 'Item' + obj
+        
+        document.getElementById('metadata').innerHTML = itemMetadata[obj-1]
+
+        document.getElementById('info').innerHTML = itemDescr[obj-1]
+
+
+
 
         //put the link to the YUAG site?
-
-
+        document.getElementById('yuag').href = 'https://artgallery.yale.edu/collections/objects/' + itemIDs[obj - 1]
 
       }
 
